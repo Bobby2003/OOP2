@@ -1,5 +1,7 @@
-//创建姓名、年龄、电话作为人员信息实例变量,
-public class Person {
+//创建姓名、年龄、电话作为人员信息实例变量。
+//public class Person {
+//将Person抽象化，加入abstract。
+public abstract class Person {
     private String name;
     private int age;
     private String phone;
