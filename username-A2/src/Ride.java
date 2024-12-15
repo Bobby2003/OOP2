@@ -1,5 +1,6 @@
 //创建游乐设施
-
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,8 +10,8 @@ public class Ride {
     private boolean isOpen;
     private Employee rideOperator; // Employee responsible for operating the ride
     //新加入两个列表
-    private List<Visitor> queue;
-    private List<Visitor> rideHistory;
+    private Queue<Visitor> queue;
+    private LinkedList<Visitor> rideHistory;
 
     // Default constructor
     public Ride() {
@@ -19,8 +20,8 @@ public class Ride {
         this.isOpen = false;
         this.rideOperator = null;
         //新加入两个列表
-        this.queue = new ArrayList<>();
-        this.rideHistory = new ArrayList<>();
+        this.queue = new LinkedList<>();// 初始化为 LinkedList
+        this.rideHistory = new LinkedList<>();
     }
 
     // Constructor with parameters
@@ -30,8 +31,8 @@ public class Ride {
         this.isOpen = isOpen;
         this.rideOperator = rideOperator;
         //新加入两个列表
-        this.queue = new ArrayList<>();
-        this.rideHistory = new ArrayList<>();
+        this.queue = new LinkedList<>();
+        this.rideHistory = new LinkedList<>();
     }
 
     // Getters and Setters
@@ -86,8 +87,13 @@ public class Ride {
     }
 
    
-    public void removeVisitorFromQueue(Visitor visitor) {
-        queue.remove(visitor);
+    public void removeVisitorFromQueue() {
+        if (!queue.isEmpty()) {
+            Visitor removedVisitor = queue.poll();  // 移除并返回队列中的第一个访客
+            System.out.println(removedVisitor.getName() + " has been removed from the queue.");
+        } else {
+            System.out.println("The queue is empty, no visitor to remove.");
+        }
     }
 
   
@@ -101,11 +107,11 @@ public class Ride {
 
     public void runOneCycle() {
         if (!queue.isEmpty()) {
-            Visitor visitor = queue.remove(0);
-            System.out.println("Running one cycle for visitor: " + visitor.getName());
-            addVisitorToHistory(visitor);
+            Visitor visitor = queue.poll();  // Remove the first visitor from the queue using poll
+            rideHistory.add(visitor);
+            System.out.println(visitor.getName() + " is riding " + rideName);
         } else {
-            System.out.println("No visitors in queue.");
+            System.out.println("No visitors in the queue for " + rideName);
         }
     }
 
@@ -141,7 +147,7 @@ public class Ride {
     
         // Remove a visitor from the queue
         //从队列中移除一个访客
-        void removeVisitorFromQueue(Visitor visitor);
+        void removeVisitorFromQueue();
     
         // Print the list of waiting visitors
         void printQueue();
