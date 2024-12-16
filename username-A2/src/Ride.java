@@ -1,8 +1,10 @@
 //创建游乐设施
 import java.util.LinkedList;
+import java.util.Iterator;
 import java.util.Queue;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class Ride {
     private String rideName;
@@ -106,12 +108,19 @@ public class Ride {
 
 
     public void runOneCycle() {
-        if (!queue.isEmpty()) {
-            Visitor visitor = queue.poll();  // Remove the first visitor from the queue using poll
-            rideHistory.add(visitor);
-            System.out.println(visitor.getName() + " is riding " + rideName);
+        int maxVisitorsToProcess = 2; // 每次最多处理3个游客
+        int processedCount = 0; // 记录处理的游客数量
+    
+        while (!queue.isEmpty() && processedCount < maxVisitorsToProcess) {
+            Visitor visitor = queue.poll();  // Remove and get the first visitor in the queue
+            System.out.println(visitor.getName() + " is enjoying the ride!");
+            addVisitorToHistory(visitor);  // Add the visitor to ride history
+            processedCount++;  // 增加已处理游客的数量
+        }
+        if (processedCount == 0) {
+            System.out.println("No visitors in the queue.");
         } else {
-            System.out.println("No visitors in the queue for " + rideName);
+            System.out.println("Processed " + processedCount + " visitors this cycle.");
         }
     }
 
@@ -122,19 +131,33 @@ public class Ride {
 
 
     public boolean checkVisitorFromHistory(Visitor visitor) {
-        return rideHistory.contains(visitor);
+        boolean found = rideHistory.contains(visitor);  // 检查历史记录中是否包含该游客
+        if (found) {
+            System.out.println(visitor.getName() + " is found in the ride history.");
+        } else {
+            System.out.println(visitor.getName() + " is not in the ride history.");
+        }
+        return found;  // 返回查询结果
     }
 
   
     public int numberOfVisitors() {
-        return rideHistory.size();
+        int numberOfVisitors = rideHistory.size();  // 获取游客数量
+        System.out.println("Number of visitors: " + numberOfVisitors);  // 输出游客数量
+        return numberOfVisitors;  // 返回游客数量
     }
 
  
     public void printRideHistory() {
-        System.out.println("Ride history for " + rideName + ":");
-        for (Visitor visitor : rideHistory) {
-            System.out.println(visitor);
+        if (rideHistory.isEmpty()) {
+            System.out.println("No visitors have taken the ride yet.");
+        } else {
+            System.out.println("Visitors who have taken the ride:");
+            Iterator<Visitor> iterator = rideHistory.iterator();//Iterator方法
+            while (iterator.hasNext()) {
+                Visitor visitor = iterator.next();
+                System.out.println(visitor.getName());
+            }
         }
     }
 
