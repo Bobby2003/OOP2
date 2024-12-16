@@ -2,11 +2,13 @@ public class AssignmentTwo {
     public static void main(String[] args) {
         AssignmentTwo assignment = new AssignmentTwo();
         
-        assignment.partThree();
+        //assignment.partThree();
         
-        assignment.partFourA();
-        assignment.partFourB();
-        assignment.partFive();
+        //assignment.partFourA();
+        //assignment.partFourB();
+        //assignment.partFive();
+        assignment.partSix();
+        assignment.partSeven();
     }
     public void partThree(){
         System.out.println("This is the partThree");
@@ -113,12 +115,29 @@ public class AssignmentTwo {
     }
     public void partSix(){
         System.out.println("This is the partSix");
-
+        Employee rideOperator_p_6 = new Employee("Alice Johnson", 30, "48-7526", "Ride Operator", 40000);
+        // Create a Ride
+        Ride rollerCoaster_p_6 = new Ride("Roller Coaster", 10, true, rideOperator_p_6);
+        Visitor visitor_p_6_1 = new Visitor("John-Doe", 25, "555-1234", "Gold", "VIP");
+        Visitor visitor_p_6_2 = new Visitor("Jane-Smith", 22, "555-5678", "Silver", "Regular");
+        Visitor visitor_p_6_3 = new Visitor("Mark-Brown", 19, "555-8765", "Bronze", "VIP");
+        Visitor visitor_p_6_4 = new Visitor("Sara-Wilson", 28, "555-4321", "Gold", "Regular");
+        Visitor visitor_p_6_5 = new Visitor("David-Green", 33, "555-8765", "Silver", "VIP");
+        rollerCoaster_p_6.addVisitorToHistory(visitor_p_6_1);
+        rollerCoaster_p_6.addVisitorToHistory(visitor_p_6_2);
+        rollerCoaster_p_6.addVisitorToHistory(visitor_p_6_3);
+        rollerCoaster_p_6.addVisitorToHistory(visitor_p_6_4);
+        rollerCoaster_p_6.addVisitorToHistory(visitor_p_6_5);
+        rollerCoaster_p_6.exportRideHistory("rideHistory.csv");
         System.out.println("-----------------------------------------------------------------");
     }
     public void partSeven(){
         System.out.println("This is the partSeven");
-
+        Employee rideOperator_p_7 = new Employee("Alice Johnson", 30, "48-7526", "Ride Operator", 40000);
+        // Create a Ride
+        Ride rollerCoaster_p_7 = new Ride("Roller Coaster", 10, true, rideOperator_p_7);
+        rollerCoaster_p_7.importRideHistory("rideHistory.csv");
+        rollerCoaster_p_7.printRideHistory();
         System.out.println("-----------------------------------------------------------------");
     }
 }

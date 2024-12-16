@@ -2,6 +2,15 @@
 import java.util.LinkedList;
 import java.util.Iterator;
 import java.util.Queue;
+
+import javax.print.attribute.standard.MediaSize.NA;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -181,8 +190,77 @@ public class Ride {
 
     public void sortRideHistory() {
             Collections.sort(rideHistory, new VisitorComparator());
-            System.out.println("Ride history has been sorted.");
+            
         }
+
+    public void exportRideHistory(String fileName) {
+        System.out.println(rideHistory);
+        PrintWriter writer = null;
+        try {
+            writer = new PrintWriter(fileName);
+            for (Visitor visitor : rideHistory) {
+                String line = visitor.getAge() + "," + visitor.getName() + "," + visitor.getPhone() + "," + visitor.getMembershipType() + "," + visitor.getTicketType();
+                System.out.println(line);
+                writer.println(line);
+            }
+            System.out.println("Ride history successfully written to file.");
+            System.out.println("------------------------------");
+        }
+        catch (IOException e) {
+            System.out.println("Error writing to file: " + e.getMessage());
+            System.out.println("------------------------------");
+        }
+        finally {
+            if (writer != null) {
+                writer.close();
+            }
+        }
+    }
+        
+        
+        
+
+
+    public void importRideHistory(String fileName) {
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new FileReader(fileName));
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                String[] data = line.split(",");
+                
+                if (data.length == 5) {
+                    int Age = Integer.parseInt(data[0]);
+                    String Name = data[1];
+                    String Phone = data[2];
+                    String MembershipType = data[3];
+                    String TicketType = data[4];
+
+                    Visitor visitor = new Visitor(Name, Age, Phone, MembershipType, TicketType);
+                    rideHistory.add(visitor);
+                    
+                }
+                else {
+                }
+            }
+        }
+        catch (IOException e) {
+            System.out.println("Error reading from file: " + e.getMessage());
+          
+        }
+        finally {
+            try {
+                if (reader != null) {
+                    reader.close();
+                }
+            }
+            catch (IOException e) {
+                System.out.println("Error closing reader: " + e.getMessage());
+               
+            }
+        }
+    }
 
 
     public interface RideInterface {
