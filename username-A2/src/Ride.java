@@ -15,6 +15,9 @@ public class Ride {
     //新加入两个列表
     private Queue<Visitor> queue;
     private LinkedList<Visitor> rideHistory;
+    //part5 新增的
+    private int maxRider;
+    private int numOfCycles; 
 
     // Default constructor
     public Ride() {
@@ -25,6 +28,9 @@ public class Ride {
         //新加入两个列表
         this.queue = new LinkedList<>();// 初始化为 LinkedList
         this.rideHistory = new LinkedList<>();
+        //part5 新增的
+        this.maxRider = 2;
+        this.numOfCycles = 0;
     }
 
     // Constructor with parameters
@@ -36,6 +42,8 @@ public class Ride {
         //新加入两个列表
         this.queue = new LinkedList<>();
         this.rideHistory = new LinkedList<>();
+        this.maxRider = 2;
+        this.numOfCycles = 0;
     }
 
     // Getters and Setters
@@ -109,20 +117,29 @@ public class Ride {
 
 
     public void runOneCycle() {
-        int maxVisitorsToProcess = 2; // 每次最多处理3个游客
-        int processedCount = 0; // 记录处理的游客数量
-    
-        while (!queue.isEmpty() && processedCount < maxVisitorsToProcess) {
-            Visitor visitor = queue.poll();  // Remove and get the first visitor in the queue
-            System.out.println(visitor.getName() + " is enjoying the ride!");
-            addVisitorToHistory(visitor);  // Add the visitor to ride history
-            processedCount++;  // 增加已处理游客的数量
+        if (!isOpen) {
+            System.out.println("Cannot run the ride. No operator assigned.");
+            return;
         }
-        if (processedCount == 0) {
-            System.out.println("No visitors in the queue.");
-        } else {
-            System.out.println("Processed " + processedCount + " visitors this cycle.");
+
+        if (queue.isEmpty()) {
+            System.out.println("Cannot run the ride. No visitors in the queue.");
+            return;
         }
+
+        // Determine how many visitors can take the ride in this cycle
+        int ridersInThisCycle = Math.min(maxRider, queue.size());
+        System.out.println("Running cycle. " + ridersInThisCycle + " visitors will take the ride.");
+
+        // Move visitors from the queue to the ride history
+        for (int i = 0; i < ridersInThisCycle; i++) {
+            Visitor visitor = queue.poll(); // Remove the visitor from the queue
+            rideHistory.add(visitor);       // Add the visitor to the ride history
+            System.out.println(visitor.getName() + " is taking the ride.");
+        }
+
+        numOfCycles++; // Increment the cycle count
+        System.out.println("Ride cycle " + numOfCycles + " completed.");
     }
 
    
