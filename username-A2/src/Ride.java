@@ -3,6 +3,7 @@ import java.util.LinkedList;
 import java.util.Iterator;
 import java.util.Queue;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -161,6 +162,10 @@ public class Ride {
         }
     }
 
+    public void sortRideHistory() {
+            Collections.sort(rideHistory, new VisitorComparator());
+            System.out.println("Ride history has been sorted.");
+        }
 
 
     public interface RideInterface {
@@ -190,6 +195,8 @@ public class Ride {
         // Print the list of visitors who took the ride
         void printRideHistory();
 
+
+        void sortRideHistory();
         
     }
 

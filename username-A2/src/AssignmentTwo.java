@@ -5,6 +5,7 @@ public class AssignmentTwo {
         assignment.partThree();
         
         assignment.partFourA();
+        assignment.partFourB();
     }
     public void partThree(){
         System.out.println("This is the partThree");
@@ -50,37 +51,27 @@ public class AssignmentTwo {
         System.out.println("-----------------------------------------------------------------");
     }
     public void partFourB(){
-        System.out.println("This is the partFourA");
+        System.out.println("This is the partFourB");
         // Create an Employee (ride operator)
-        Employee rideOperator_p_4A = new Employee("Alice Johnson", 30, "48-7526", "Ride Operator", 40000);
+        Employee rideOperator_p_4B = new Employee("Alice Johnson", 30, "48-7526", "Ride Operator", 40000);
         // Create a Ride
-        Ride rollerCoaster_p_4A = new Ride("Roller Coaster", 10, true, rideOperator_p_4A);
+        Ride rollerCoaster_p_4B = new Ride("Roller Coaster", 10, true, rideOperator_p_4B);
         // Create Visitors with additional fields: phone and membershipType
-        Visitor visitor_p_4A_1 = new Visitor("John Doe", 25, "555-1234", "Gold", "VIP");
-        Visitor visitor_p_4A_2 = new Visitor("Jane Smith", 22, "555-5678", "Silver", "Regular");
-        Visitor visitor_p_4A_3 = new Visitor("Mark Brown", 19, "555-8765", "Bronze", "VIP");
-        Visitor visitor_p_4A_4 = new Visitor("Sara Wilson", 28, "555-4321", "Gold", "Regular");
-        Visitor visitor_p_4A_5 = new Visitor("David Green", 33, "555-8765", "Silver", "VIP");
+        Visitor visitor_p_4B_1 = new Visitor("John Doe", 25, "555-1234", "Gold", "VIP");
+        Visitor visitor_p_4B_2 = new Visitor("Jane Smith", 22, "555-5678", "Silver", "Regular");
+        Visitor visitor_p_4B_3 = new Visitor("Mark Brown", 19, "555-8765", "Bronze", "VIP");
+        Visitor visitor_p_4B_4 = new Visitor("Sara Wilson", 28, "555-4321", "Gold", "Regular");
+        Visitor visitor_p_4B_5 = new Visitor("David Green", 33, "555-8765", "Silver", "VIP");
         // Add visitors to the queue
-        rollerCoaster_p_4A.addVisitorToQueue(visitor_p_4A_1);
-        rollerCoaster_p_4A.addVisitorToQueue(visitor_p_4A_2);
-        rollerCoaster_p_4A.addVisitorToQueue(visitor_p_4A_3);
-        rollerCoaster_p_4A.addVisitorToQueue(visitor_p_4A_4);
-        rollerCoaster_p_4A.addVisitorToQueue(visitor_p_4A_5);
-        // Print current queue
-        rollerCoaster_p_4A.printQueue();
-        // Run one cycle for the first visitor
-        rollerCoaster_p_4A.runOneCycle();
-        // Print the queue and history after the cycle
-        rollerCoaster_p_4A.printQueue();
-        rollerCoaster_p_4A.printRideHistory();
-        rollerCoaster_p_4A.checkVisitorFromHistory(visitor_p_4A_2);
-        rollerCoaster_p_4A.numberOfVisitors();
-        // Remove a visitor from the queue
-        rollerCoaster_p_4A.removeVisitorFromQueue();
-        // Print the queue and history again after removal
-        rollerCoaster_p_4A.printQueue();
-        rollerCoaster_p_4A.printRideHistory();
+        rollerCoaster_p_4B.addVisitorToHistory(visitor_p_4B_1);
+        rollerCoaster_p_4B.addVisitorToHistory(visitor_p_4B_2);
+        rollerCoaster_p_4B.addVisitorToHistory(visitor_p_4B_3);
+        rollerCoaster_p_4B.addVisitorToHistory(visitor_p_4B_4);
+        rollerCoaster_p_4B.addVisitorToHistory(visitor_p_4B_5);
+        rollerCoaster_p_4B.printRideHistory();
+        rollerCoaster_p_4B.sortRideHistory();
+        System.out.println("----------------");
+        rollerCoaster_p_4B.printRideHistory();
         System.out.println("-----------------------------------------------------------------");
     }
     public void partFive(){
