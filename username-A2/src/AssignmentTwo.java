@@ -1,7 +1,30 @@
 public class AssignmentTwo {
     public static void main(String[] args) {
+        AssignmentTwo assignment = new AssignmentTwo();
+        
+        assignment.partThree();
+        
+        //assignment.partFourA();
+    }
+    public void partThree(){
+        System.out.println("This is the partThree");
+        Employee rideOperator_p_2 = new Employee("Alice Johnson", 30, "48-7526", "Ride Operator", 40000);
+        Visitor visitor_p_2_1 = new Visitor("John Doe", 25, "555-1234", "Gold", "VIP");
+        Visitor visitor_p_2_2 = new Visitor("Jane Smith", 22, "555-5678", "Silver", "Regular");
+        Visitor visitor_p_2_3 = new Visitor("Jane Smith", -22, "555-5678", "Silver", "Regular");
+        Ride rollerCoaster_p_2 = new Ride("Roller Coaster", 10, true, rideOperator_p_2);
+        rollerCoaster_p_2.addVisitorToQueue(visitor_p_2_1);
+        rollerCoaster_p_2.addVisitorToQueue(visitor_p_2_2);
+        rollerCoaster_p_2.addVisitorToQueue(visitor_p_2_3);
+        rollerCoaster_p_2.printQueue();
+        rollerCoaster_p_2.removeVisitorFromQueue();
+        rollerCoaster_p_2.printQueue();
+        System.out.println("-----------------------------------------------------------------");
+    }
+    public void partFourA(){
+        System.out.println("This is the partFourA");
         // Create an Employee (ride operator)
-        Employee rideOperator = new Employee("Alice Johnson", 30, "123 Park Lane", "Ride Operator", 40000);
+        Employee rideOperator = new Employee("Alice Johnson", 30, "48-7526", "Ride Operator", 40000);
 
         // Create a Ride
         Ride rollerCoaster = new Ride("Roller Coaster", 10, true, rideOperator);
@@ -36,10 +59,7 @@ public class AssignmentTwo {
         // Print the queue and history again after removal
         rollerCoaster.printQueue();
         rollerCoaster.printRideHistory();
-    }
-    public void partThree(){
-    }
-    public void partFourA(){
+        System.out.println("-----------------------------------------------------------------");
     }
     public void partFourB(){
     }

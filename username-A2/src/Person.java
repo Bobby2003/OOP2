@@ -12,13 +12,14 @@ public abstract class Person {
         this.name = "";
         this.age = 0;
         this.phone = "";
+        System.out.println("Person object created with default values.");
     }
 
     // Constructor with parameters
     //使用参数设置的第二个构造函数
     public Person(String name, int age, String phone) {
         this.name = name;
-        this.age = age;
+        setAge(age); //显式表达
         this.phone = phone;
     }
 
@@ -37,7 +38,12 @@ public abstract class Person {
     }
 
     public void setAge(int age) {
-        this.age = age;
+        if (age >= 0) {
+            this.age = age;
+        } else {
+            System.out.println("Failed to set age.Age :"+age+" Age cannot be negative.");
+            this.age=0;
+        }
     }
 
     public String getPhone() {
@@ -45,7 +51,11 @@ public abstract class Person {
     }
 
     public void setPhone(String phone) {
-        this.phone = phone;
+        if (phone != null && !phone.isEmpty()) {
+            this.phone = phone;
+        } else {
+            System.out.println("Failed to set phone. Phone cannot be null or empty.");
+        }
     }
 
     @Override
